@@ -16,6 +16,4 @@ const Columns = styled.div`
   grid-template-columns: repeat(${(props) => props.columns ?? 1}, 1fr);
 `;
 
-const Column = styled.div`
-  grid-column: span ${(props: IColumn) => props.span ?? 1};
-`;
+export default Columns;
