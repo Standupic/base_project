@@ -1,0 +1,167 @@
+@import "~juicyfront/styles/common";
+
+html {
+  font-size: 16px;
+}
+
+body {
+  min-width: 420px;
+  min-height: 700px;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #fefefe;
+  cursor: default;
+}
+
+// Фикс баунса в сафари
+@media (max-width: 768px) {
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    overflow: hidden;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+p,
+input,
+button,
+textarea {
+  margin: 0;
+  padding: 0;
+  font-family: inherit;
+}
+
+input,
+textarea {
+  font-family: 'SBSansDisplay', sans-serif;
+}
+
+// сброс стилей для отображения на мобильных устройствах
+input,
+textarea {
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+}
+
+// кастомный скролл
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  position: relative;
+  left: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: rgba(85, 85, 85, 0.3);
+}
+
+// запрет на ресайз textarea
+body textarea {
+  resize: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+a {
+  outline: none;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (max-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 0;
+  }
+}
+
+// Classes
+
+#root {
+  max-width: 1920px;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  overflow-y: auto;
+}
+
+.root {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+}
+
+input:focus {
+  color: var(--base-strong-text);
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+  color: var(--base-weak-text);
+}
+
+input::-moz-placeholder,
+textarea::-moz-placeholder {
+  color: var(--base-weak-text);
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+  color: var(--base-weak-text);
+}
+
+input:-moz-placeholder,
+textarea:-moz-placeholder {
+  color: var(--base-weak-text);
+}
+
+.no-event {
+  pointer-events: none;
+}
+
+.popup-content__container {
+  padding: 50px;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  margin: 0;
+}
+
+.short__submit {
+  max-width: 364px;
+}
