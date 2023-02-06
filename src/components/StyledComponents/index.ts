@@ -15,6 +15,8 @@ import Columns from "./Columns";
 import Label from "./Label";
 import Text from "./Text";
 import Tittle from "./Tittle";
+import Frame from "./Frame";
+
 
 export { 
     Label,
@@ -34,4 +36,5 @@ export {
     StickyButton,
     Column,
     Columns,
+    Frame,
 };
