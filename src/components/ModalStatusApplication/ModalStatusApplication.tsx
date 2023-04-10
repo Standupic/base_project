@@ -1,56 +1,52 @@
 import { Modal, Button } from 'juicyfront';
-import React, { FC, useCallback } from 'react';
+import React, { FC, ReactNode, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ReactComponent as JackdawSuccessSVG } from '../../assets/images/jackdawSuccess.svg';
 import { ReactComponent as CrossSVG } from '../../assets/images/cross.svg';
 import history from '../../store/history';
 import './styles.sass';
-import { setStatusApplication, STATUS_APPLICATION } from '../../store/globalStateSlice';
-import {
-  Center, Stack, Heading
-} from '../styledComponents';
+import { setStatusApplication, STATUS, STATUS_APPLICATION } from '../../store/globalStateSlice';
+import { Center, Stack, Heading } from '../styledComponents';
 import { RootState } from '../../store';
 import { Text } from './styledComponents';
 
-const HeadingValues = {
-  [STATUS_APPLICATION.Error]: 'Заявка не была исполнена',
-  [STATUS_APPLICATION.Success]: 'Заявка успешно исполнена',
+type PartialStatus = Partial<Record<STATUS, string | ReactNode>>;
+
+const HeadingValues: PartialStatus = {
+  [STATUS.Error]: 'Заявка не была исполнена',
+  [STATUS.Success]: 'Заявка успешно исполнена',
 };
 
-const TextValues = {
-  [STATUS_APPLICATION.Error]: 'Произошла техническая проблема.',
-  [STATUS_APPLICATION.Success]: 'Созданные заявки будут отображаться в раздел «Мои заявки»',
+const TextValues: PartialStatus = {
+  [STATUS.Error]: 'Произошла техническая проблема.',
+  [STATUS.Success]: 'Созданные заявки будут отображаться в раздел «Мои заявки»',
 };
 
-const Images = {
-  [STATUS_APPLICATION.Error]: <CrossSVG />,
-  [STATUS_APPLICATION.Success]: <JackdawSuccessSVG />,
+const Images: PartialStatus = {
+  [STATUS.Error]: <CrossSVG />,
+  [STATUS.Success]: <JackdawSuccessSVG />,
 };
 
 const ModalCreateApplication: FC = () => {
-  const statusApplication = useSelector((state: RootState) => state.globalState.statusApplication);
+  const { status } = useSelector((state: RootState) => state.globalState.statusApplication);
   const dispatch = useDispatch();
   const handlerClick = useCallback(() => {
-    if (statusApplication === STATUS_APPLICATION.Success) {
-      dispatch(setStatusApplication(undefined));
+    if (status === STATUS.Success) {
+      dispatch(setStatusApplication({ status: STATUS.Success }));
       history.push('/listApplications');
     }
-
-    dispatch(setStatusApplication(undefined));
-  }, [statusApplication]);
+  }, [status]);
   return (
     <>
-      {statusApplication && (
-        <Modal size='s' header onClose={handlerClick}>
+      {status && (
+        <Modal size="s" header onClose={handlerClick}>
           <Center as={Stack} gutter={'lg'} centerChildren>
-            {Images[statusApplication]}
+            {Images[status]}
             <Center as={Stack} centerChildren gutter={'sm'}>
               <Heading size={'18px'} level={'h6'}>
-                {HeadingValues[statusApplication]}
+                {HeadingValues[status]}
               </Heading>
-              <Text isError={statusApplication === STATUS_APPLICATION.Error}>
-                {TextValues[statusApplication]}
-              </Text>
+              <Text isError={status === STATUS.Error}>{TextValues[status]}</Text>
             </Center>
             <Button fullWidth onClick={handlerClick}>
               Продолжить

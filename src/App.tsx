@@ -10,46 +10,45 @@ import { Box, Stack } from './components/styledComponents';
 import AccessibleSection from './components/AccessibleSection';
 import NavigationTabs from './components/NavigationTab';
 import ErrorBoundaryHandler from './components/ErrorBoundaryHandler';
+import AsyncErrorHandler from './components/AsyncErrorHandler';
 
 const CreateApplication = React.lazy(() => import('./pages/CreateApplication'));
 const ViewApplication = React.lazy(() => import('./pages/ViewApplication'));
 const ListApplications = React.lazy(() => import('./pages/ListApplications'));
 
-
 export enum IRoutes {
-    createApplication = '/createApplication',
-    listApplications = '/listApplications',
-    viewApplication = '/viewApplications',
+  createApplication = '/createApplication',
+  listApplications = '/listApplications',
+  viewApplication = '/viewApplications',
 }
-
 
 const App = () => {
   useSuccessRunApp();
   useAuthorization();
   return (
-    <>
-      <Box width={'880px'}>
-        <ErrorBoundaryHandler>
+    <Box width={'880px'}>
+      <ErrorBoundaryHandler>
+        <AsyncErrorHandler>
           <EntryPoint>
             <Stack>
               <AccessibleSection blackList={[IRoutes.viewApplication]}>
                 <Box>
-                  <NavigationTabs/>
+                  <NavigationTabs />
                 </Box>
               </AccessibleSection>
             </Stack>
             <Switch>
-              <Suspense fallback={<Preloader/>}>
-                <Route path={IRoutes.createApplication} component={CreateApplication}/>
-                <Route path={IRoutes.listApplications} component={ListApplications}/>
-                <Route path={IRoutes.viewApplication} component={ViewApplication}/>
+              <Suspense fallback={<Preloader />}>
+                <Route path={IRoutes.createApplication} component={CreateApplication} />
+                <Route path={IRoutes.listApplications} component={ListApplications} />
+                <Route path={IRoutes.viewApplication} component={ViewApplication} />
               </Suspense>
             </Switch>
-            <ModalStatusApplication/>
+            <ModalStatusApplication />
           </EntryPoint>
-        </ErrorBoundaryHandler>
-      </Box>
-    </>
+        </AsyncErrorHandler>
+      </ErrorBoundaryHandler>
+    </Box>
   );
 };
 

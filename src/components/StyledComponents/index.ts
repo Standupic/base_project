@@ -11,30 +11,29 @@ import Inline from './Inline';
 import Grid from './Grid';
 import StickyButton from './StickyButton';
 import Column from './Column';
-import Columns from "./Columns";
-import Label from "./Label";
-import Text from "./Text";
-import Tittle from "./Tittle";
-import Frame from "./Frame";
+import Columns from './Columns';
+import Label from './Label';
+import Text from './Text';
+import Tittle from './Tittle';
+import Frame from './Frame';
 
-
-export { 
-    Label,
-    Text,
-    Tittle,
-    Box,
-    Stack,
-    Cover,
-    Center,
-    InlineCluster,
-    PadBox,
-    Split,
-    Heading,
-    Card,
-    Inline,
-    Grid,
-    StickyButton,
-    Column,
-    Columns,
-    Frame,
+export {
+  Label,
+  Text,
+  Tittle,
+  Box,
+  Stack,
+  Cover,
+  Center,
+  InlineCluster,
+  PadBox,
+  Split,
+  Heading,
+  Card,
+  Inline,
+  Grid,
+  StickyButton,
+  Column,
+  Columns,
+  Frame,
 };

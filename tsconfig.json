@@ -29,6 +29,6 @@
     "**/jest/*",
     "**/setupTests.ts"
   ],
-  "include": ["**/*.ts", "**/*.tsx", "custom.ts.d.ts"],
+  "include": ["**/*.ts", "**/*.tsx", "custom.ts.d.ts", "odataQuery.ts.d.ts"],
   "esModuleInterop": true
 }
